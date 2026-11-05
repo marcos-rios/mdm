@@ -1,8 +1,10 @@
-# Checklist imprimible — Recovery en una Mac con chip Apple
+# Checklist — Mac limpia desde cero y desvinculación corporativa
 
-Revisión documental: 5 de noviembre de 2026. Consultar [04](04-dep-borrar-y-reinstalar.md) antes de usar esta hoja; guardarla en otro dispositivo o imprimirla. Los nombres entre paréntesis son los controles en inglés. No se confirmó el idioma ni la versión del equipo.
+Revisión documental: 5 de noviembre de 2026. Consultar [04](04-dep-borrar-y-reinstalar.md) antes de usar esta hoja; guardarla en otro dispositivo o imprimirla. Los nombres entre paréntesis son los controles en inglés. Sequoia 15 está informado por vos; falta el número/build exacto y el idioma.
 
-**Tu situación:** administrador local, DEP activo y sin acceso a TI. Las etapas de borrado solo aplican después de resolver los requisitos de la guía principal; no son el siguiente paso disponible ahora.
+**Objetivo:** borrar, reinstalar y configurar como nueva, sin MDM, agentes ni asignación corporativa pendiente.
+
+**Tu situación:** administrador local, DEP activo, Sequoia 15 y sin acceso a TI; indicás que no hay sesión de iCloud/cuenta de Apple iniciada. Las etapas de borrado solo aplican después de resolver los requisitos de la guía principal; no son el siguiente paso disponible ahora.
 
 **Esta hoja no certifica el bypass de terceros. No borrar para probar si funciona.** El borrado no libera ADE y la activación puede requerir Internet.
 
@@ -11,10 +13,10 @@ Revisión documental: 5 de noviembre de 2026. Consultar [04](04-dep-borrar-y-rei
 - [ ] Modelo, versión/build de macOS y estado local de `profiles status -type enrollment` registrados, con errores si los hubo.
 - [ ] Respaldo externo comprobado; contraseña de respaldo y recuperación de FileVault disponibles si corresponden.
 - [ ] Inventario opcional copiado fuera de la Mac. El script escribe un `.txt`; no acredita una baja ni la ausencia de bloqueo.
-- [ ] Buscar mi Mac revisado: **Configuración del Sistema → tu nombre → iCloud → Ver todo/Mostrar más apps → Buscar mi Mac**.
+- [ ] Sin sesión de Apple: registrar esa situación, sin tomarla como prueba de ausencia de bloqueo. La ruta **tu nombre → iCloud → Ver todo/Mostrar más apps → Buscar mi Mac** aplica si hay una cuenta iniciada.
 - [ ] Bloqueo de activación resuelto; una opción ausente no se anotó como “desactivado”. Ver [Gate 1 y ejemplos oficiales](04-dep-borrar-y-reinstalar.md#gate-1--buscar-mi-mac-y-bloqueo-de-activación).
 - [ ] Bloqueo y asignación/liberación Apple Business/ABM resueltos con constancia verificable. Como no hay TI disponible, consultar opciones al soporte; si siguen sin resolverse, no pasar al borrado.
-- [ ] Solo con los requisitos resueltos: método elegido para el uso personal previsto, EACS si corresponde o Recovery/reinstalación.
+- [ ] Solo con los requisitos resueltos: Recovery, borrado y reinstalación elegidos para empezar desde cero; EACS queda como alternativa que conserva macOS.
 
 ## A. Entrar a Recovery, si hace falta
 
@@ -39,8 +41,12 @@ Revisión documental: 5 de noviembre de 2026. Consultar [04](04-dep-borrar-y-rei
 
 ## D. Comprobar el resultado
 
-- [ ] Si se va a usar: crear cuenta mediante el asistente normal; probar login, archivos, red y recuperación.
-- [ ] Consultar `profiles status -type enrollment` y revisar perfiles y agentes por separado. “MDM: No” no prueba liberación del número de serie.
+- [ ] Configurar como nueva con el asistente normal y crear una cuenta propia, sin transferir apps, cuentas ni ajustes del respaldo corporativo.
+- [ ] Recuperar solo archivos personales seleccionados y reinstalar las aplicaciones necesarias desde sus fuentes oficiales.
+- [ ] Probar login, archivos, red y recuperación; volver a comprobar inscripción tras reiniciar.
+- [ ] Consultar `profiles status -type enrollment`, `sudo profiles list` y `systemextensionsctl list`; revisar perfiles, agentes y configuraciones de red por separado. “MDM: No” no prueba liberación del número de serie.
+- [ ] Sin dependencia de bloqueos en hosts/DNS ni marcadores de bypass para evitar la inscripción.
+- [ ] Liberación de Apple Business/ABM y bloqueo ajeno resueltos. Si falta, registrar **limpieza local parcial, DEP pendiente** y no marcar desvinculación completa.
 
 ## Si falla el login tras retirar JumpCloud
 

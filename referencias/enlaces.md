@@ -38,6 +38,7 @@ Se reemplazó el antiguo enlace `https://jumpcloud.com/support/uninstall-the-age
 | [Secure Token, bootstrap token y propiedad del volumen](https://support.apple.com/guide/deployment/use-secure-and-bootstrap-tokens-dep24dbdcf9e/web) | Son conceptos distintos de ser administrador local. Un fallo de FileVault no diagnostica por sí solo la causa. |
 | [Alcance de Time Machine](https://support.apple.com/en-in/guide/mac-help/mh35860/mac) | No incluye los archivos de la instalación de macOS. |
 | [Snapshots locales](https://support.apple.com/en-ca/102154) | Residen en el disco original; no sustituyen un respaldo externo antes de borrar. |
+| [Alcance de Asistente de Migración](https://support.apple.com/102613) | Puede transferir apps, cuentas y ajustes. Para empezar limpio se elige no transferir el entorno anterior y recuperar solo archivos personales. |
 | [Restaurar desde un respaldo](https://support.apple.com/102551) | Reinstalar si hace falta y recuperar información con Asistente de Migración. |
 | [Eliminar usuario o grupo](https://support.apple.com/en-euro/guide/mac-help/mchlp1557/27/mac/27) | Control de información → Delete User y alternativas para la carpeta de inicio. Usar la ayuda de la versión instalada si la pantalla difiere. |
 
@@ -50,11 +51,11 @@ La documentación actual de Apple usa **Apple Business**; el proyecto conserva *
 
 ## Qué falta confirmar en tu equipo
 
-Ya confirmaste administrador local, DEP activo y falta de acceso a TI. Esos datos definen el alcance de la guía; las rutas sin DEP y los procedimientos de consola se retiraron.
+Ya confirmaste administrador local, DEP activo y falta de acceso a TI. También indicás Sequoia 15 actualizado dentro de esa línea, sin número/build exacto, y ninguna sesión de iCloud/cuenta de Apple iniciada. Esos datos definen el alcance de la guía; las rutas sin DEP y los procedimientos de consola se retiraron.
 
-1. Versión/build de macOS, idioma y agentes realmente instalados.
+1. Número/build exacto de Sequoia 15, idioma y agentes realmente instalados.
 2. Estado local actual de MDM y FileVault; DEP ya está confirmado por vos.
-3. Tipo de cuenta de Apple, estado de Buscar/Bloqueo de activación y texto exacto cuando falta o falla un control.
+3. Estado de Bloqueo de activación: no hay sesión de cuenta de Apple visible, pero eso solo no acredita ausencia de un bloqueo anterior. Registrar cualquier mensaje exacto.
 4. Opciones reales de soporte ante Apple/JumpCloud sin un contacto de TI, y eventual constancia de resolución del bloqueo y de la asignación/liberación por serie.
 5. Compatibilidad real del bypass y recuperación en la versión exacta. Esta revisión documental **no la acredita** y no se realizaron pruebas destructivas para comprobarla.
 

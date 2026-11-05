@@ -1,6 +1,6 @@
-# Mac personal con DEP activo y sin acceso a TI
+# Dejar la Mac limpia desde cero y sin control corporativo
 
-Documentación para preparar el uso personal de una Mac que conserva administración corporativa, según tu situación actual.
+Guía para borrar la instalación actual, reinstalar macOS, configurar la Mac como nueva y retirar toda la gestión corporativa que pueda resolverse y verificarse.
 
 Revisión documental: **5 de noviembre de 2026**. Se revisaron los archivos y las fuentes enlazadas; no se ejecutaron los procedimientos en una Mac.
 
@@ -9,8 +9,18 @@ Revisión documental: **5 de noviembre de 2026**. Se revisaron los archivos y la
 - Tenés una cuenta **administradora local**.
 - El equipo tiene **DEP/ADE activo** (`Enrolled via DEP: Yes`).
 - **No tenés acceso a alguien de TI** que gestione la baja desde las consolas.
+- Indicás **macOS Sequoia 15**, actualizado dentro de esa versión; falta el número/build exacto.
+- No tenés iniciada sesión en **iCloud/cuenta de Apple**, según tu respuesta sobre ese panel.
 
-El objetivo es usar la Mac sin gestión corporativa. La guía parte de esos datos y no te deriva a recorridos sin DEP o que necesitan un administrador de TI. Quedan por conocer la versión exacta de macOS, el estado actual del perfil MDM y de los agentes, y el Bloqueo de activación.
+## Qué cuenta como objetivo cumplido
+
+- macOS reinstalado y configurado como nuevo, con tu cuenta local.
+- Sin restaurar las cuentas, aplicaciones ni configuraciones corporativas del sistema anterior.
+- Sin inscripción MDM, perfiles ni agentes corporativos en la instalación nueva.
+- Número de serie liberado de la organización en Apple Business/ABM y sin Bloqueo de activación ajeno pendiente.
+- Funcionamiento normal conectado a Internet, sin depender de bloqueos de red o cambios de `hosts` para omitir la inscripción.
+
+Una limpieza local con DEP todavía sin resolver es un **resultado parcial**. No se dará por terminada como “sin control corporativo”. La guía parte de tu acceso local y la falta de TI; el estado MDM y el Bloqueo de activación siguen por comprobar.
 
 El contexto anterior indica que la empresa cerró y cedió los equipos. Conservá la documentación de esa cesión.
 
@@ -21,7 +31,8 @@ Leé la [guía principal para tu caso](docs/04-dep-borrar-y-reinstalar.md). Incl
 1. Qué podés comprobar con tu acceso local, sin modificar la gestión.
 2. Cómo encontrar Buscar mi Mac y qué hacer si no aparece.
 3. Qué falta resolver antes de borrar y qué puede consultarse al soporte de Apple o JumpCloud sin contar con TI.
-4. Qué hace el bypass incluido y qué no se pudo verificar.
+4. Borrado y reinstalación, configuración como nueva y comprobaciones finales.
+5. Qué hace el bypass incluido y por qué no acredita la desvinculación completa.
 
 **Tener administrador local no acredita una liberación de Apple Business/ABM. Borrar tampoco libera el número de serie.** El bypass sigue sin estar validado para tu versión; no se presenta como una solución garantizada. [Apple: ADE](https://support.apple.com/en-by/guide/deployment/dep73069dd57/web), [Apple: liberar dispositivos](https://support.apple.com/guide/business/release-devices-axmec4d28461/1/web/1).
 
@@ -29,7 +40,7 @@ Leé la [guía principal para tu caso](docs/04-dep-borrar-y-reinstalar.md). Incl
 
 | Archivo | Propósito |
 |---|---|
-| [04 — Guía principal](docs/04-dep-borrar-y-reinstalar.md) | Tu caso: admin local, DEP activo y sin TI. Comprobaciones, requisitos, límites del bypass y reparación de login si fuera necesaria. |
+| [04 — Guía principal](docs/04-dep-borrar-y-reinstalar.md) | Sequoia 15, admin local, DEP y sin TI: requisitos, reinstalación desde cero y criterios de desvinculación completa. |
 | [05 — Recuperación y rollback](docs/05-rollback.md) | Recuperar datos y revisar cambios locales; límites de una eventual entrega. |
 | [06 — Checklist de Recovery](docs/06-checklist-recovery.md) | Hoja de consulta; el borrado queda condicionado a resolver los requisitos. |
 | [Imágenes](docs/imagenes/README.md) | Procedencia y versión de los ejemplos oficiales. |

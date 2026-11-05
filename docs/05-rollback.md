@@ -10,7 +10,7 @@ No uses `tmutil localsnapshot` como respaldo de un borrado: los snapshots locale
 
 Restaurar datos no restaura la asignación del número de serie en Apple Business, el estado del servidor MDM ni un código de recuperación que nunca guardaste. Conservar una copia de archivos tampoco garantiza que puedas activar o iniciar la Mac tras borrar: resolvé antes los requisitos de [04](04-dep-borrar-y-reinstalar.md).
 
-Para recuperar datos después de reinstalar, usá [Asistente de Migración con un respaldo Time Machine](https://support.apple.com/102551). Revisá qué cuentas, aplicaciones y ajustes migrás: una restauración puede volver a traer componentes corporativos. Comprobá de nuevo MDM y agentes; no presupongas que el respaldo certifica su retirada.
+Para tu objetivo de empezar limpio, copiá solo los archivos personales seleccionados y reinstalá tus aplicaciones. Una restauración completa de apps, cuentas y ajustes puede volver a traer componentes corporativos; no es el recorrido principal de esta limpieza. [Asistente de Migración desde Time Machine](https://support.apple.com/102551) se conserva como opción de recuperación si necesitás volver a tus datos, sabiendo ese alcance. Comprobá de nuevo MDM y agentes; restaurar un respaldo no certifica su retirada.
 
 ## Nivel 1 — Borrar para entregar o volver a gestionar
 

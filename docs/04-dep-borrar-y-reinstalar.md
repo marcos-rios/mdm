@@ -1,10 +1,23 @@
-# DEP activo, administrador local y sin TI — Guía principal
+# Limpiar la Mac desde cero y retirar el control corporativo
 
-Revisión documental: 5 de noviembre de 2026. El objetivo sigue siendo dejar la Mac para uso personal, sin gestión corporativa. **Borrar o ejecutar el bypass incluido no garantiza ese resultado.** Esta guía separa el procedimiento oficial de las partes que no se pudieron validar.
+Revisión documental: 5 de noviembre de 2026. **Objetivo: borrar la instalación anterior, reinstalar macOS y configurar una Mac personal sin MDM, agentes, perfiles ni una asignación corporativa de DEP/ADE pendiente.** Borrar o ejecutar el bypass incluido no acredita por sí solo ese resultado.
+
+## Resultado buscado y cómo comprobarlo
+
+| Parte del objetivo | Comprobación necesaria |
+|---|---|
+| Empezar de cero | Borrado de la instalación identificada, reinstalación y cuenta nueva mediante el asistente normal. |
+| No traer de vuelta la instalación corporativa | Configurar sin transferir cuentas, apps y ajustes anteriores; recuperar solo archivos personales seleccionados. |
+| Retirar el control local | MDM sin inscripción informada, sin perfiles corporativos y sin sus agentes, extensiones o configuraciones de red en la instalación nueva. |
+| Resolver DEP/ADE de forma duradera | Constancia de liberación del número de serie en Apple Business/ABM. El estado local y llegar al escritorio no sustituyen esa constancia. |
+| Conservar el acceso | Sin Bloqueo de activación ajeno pendiente y con credenciales propias de la cuenta y recuperación. |
+| Usar normalmente la Mac | Configuración y funcionamiento con Internet, sin bloqueos de dominios ni marcadores de bypass como condición para evitar la gestión. |
+
+Si solo se limpia el disco pero sigue sin resolverse la asignación corporativa, se registra como **limpieza local parcial, DEP pendiente**. El objetivo completo no se marca como logrado. [Apple: liberación y borrado posterior](https://support.apple.com/guide/business/release-devices-axmec4d28461/1/web/1), [Apple: ADE](https://support.apple.com/en-by/guide/deployment/dep73069dd57/web).
 
 ## Tu situación y el siguiente paso
 
-**Confirmado por vos:** tenés administrador local, DEP/ADE activo y no tenés acceso a alguien de TI. No hace falta volver a tratar esos datos como desconocidos. El modelo M4 proviene del contexto anterior; la versión exacta de macOS sigue pendiente.
+**Confirmado por vos:** tenés administrador local, DEP/ADE activo y no tenés acceso a alguien de TI. Indicás macOS Sequoia 15 actualizado dentro de esa versión y ninguna sesión de iCloud/cuenta de Apple iniciada. No se interpreta “última versión de Sequoia” como otra versión mayor de macOS. El modelo M4 proviene del contexto anterior; falta el número/build exacto para ajustar diferencias puntuales.
 
 Con ese acceso, lo siguiente es registrar la información que falta y preparar un respaldo, sin retirar perfiles, agentes ni borrar la Mac. En Terminal, estas consultas son de lectura:
 
@@ -35,7 +48,9 @@ El borrado es irreversible para los datos de ese disco. Si algo está pendiente,
 
 ### Gate 1 — Buscar mi Mac y Bloqueo de activación
 
-**Buscar mi Mac no se encuentra directamente debajo de tu nombre: hay que entrar a iCloud.** En las versiones documentadas actualmente por Apple:
+**En tu caso no hay sesión de cuenta de Apple iniciada:** puede no aparecer tu nombre ni el acceso a iCloud. No necesitás iniciar sesión para seguir este diagnóstico. Esa ausencia no certifica que no exista Bloqueo de activación de una cuenta anterior ni resuelve DEP. Registrá lo que muestre el sistema y aclaralo con soporte antes de borrar si el bloqueo sigue sin poder confirmarse.
+
+La ruta siguiente sirve si sí hay una cuenta iniciada; no es un requisito para que inicies una ahora. **Buscar mi Mac se encuentra dentro de iCloud**, no directamente debajo del nombre. Según la versión:
 
 1. Abrí **Configuración/Ajustes del Sistema (System Settings)** desde el menú Apple.
 2. Entrá en **tu nombre → iCloud**.
@@ -45,7 +60,7 @@ El borrado es irreversible para los datos de ese disco. Si algo está pendiente,
 
 La desactivación de Buscar es el método que Apple documenta para retirar el Bloqueo de activación personal. No basta con apagar solo **Red de Buscar (Find My network)**. [Apple: Bloqueo de activación en Mac](https://support.apple.com/es-es/102541).
 
-**Ejemplos oficiales, macOS Tahoe 26, interfaz en inglés. No son capturas de tu equipo.** En el primero, Apple resalta “See All”; en el segundo, la fila “Find My Mac” está desactivada en el equipo de ejemplo.
+**Ejemplos oficiales de macOS Tahoe 26 en inglés; tu sistema informado es Sequoia 15 y no tiene una sesión de Apple iniciada. Estas imágenes solo orientan sobre el panel con cuenta iniciada; no representan tu pantalla.** En el primero, Apple resalta “See All”; en el segundo, la fila “Find My Mac” está desactivada en el equipo de ejemplo.
 
 ![Ejemplo de Apple: iCloud en macOS Tahoe 26, con See All resaltado](https://cdsassets.apple.com/live/7WUAS350/images/icloud/macos-tahoe-26-system-settings-apple-account-icloud-see-all-magnifier.png)
 
@@ -70,7 +85,7 @@ Si existe gestión corporativa, la organización debe comprobar el bloqueo en su
 
 ### Gate 2 — Backup verificado e inventario
 
-- Hacé una copia externa con Time Machine y una copia aparte de lo crítico. Comprobá archivos de muestra y conservá la contraseña del respaldo cifrado.
+- Hacé una copia externa con Time Machine como recuperación de emergencia y una copia aparte de tus archivos personales. Comprobá archivos de muestra y conservá la contraseña del respaldo cifrado. Para la instalación limpia, recuperá solo los archivos que elijas; no migres automáticamente las apps, cuentas ni ajustes de la Mac corporativa.
 - No cuentes un snapshot local como respaldo para un borrado: está en el mismo disco. Tampoco supongas que Time Machine reconstruirá exactamente el sistema y la gestión; ver [05](05-rollback.md).
 - Opcionalmente, desde la carpeta del proyecto:
 
@@ -98,13 +113,15 @@ Solo si se obtiene una resolución verificable del bloqueo y de la asignación/l
 
 ### Paso 2 — Elegir el método de borrado
 
-En Apple Silicon con un sistema funcional, Apple ofrece **Borrar contenido y configuración (Erase All Content and Settings)**. En macOS 13 o posterior: **Configuración del Sistema → General → Transferir o restablecer (Transfer or Reset) → Borrar contenido y configuración**.
+**Recorrido principal para tu objetivo:** borrar la instalación mediante Recovery y reinstalar macOS con el paso 3; después configurarla como nueva. No es necesario desinstalar manualmente cada agente del sistema anterior para seguir ese recorrido una vez resueltos los requisitos. El borrado no resuelve por sí mismo la asignación de Apple.
+
+Como alternativa para borrar datos y ajustes conservando el sistema ya instalado, en Apple Silicon con un sistema funcional, Apple ofrece **Borrar contenido y configuración (Erase All Content and Settings)**. En macOS 13 o posterior: **Configuración del Sistema → General → Transferir o restablecer (Transfer or Reset) → Borrar contenido y configuración**.
 
 El asistente puede pedir contraseña administradora, mostrar qué eliminará y pedir la cuenta de Apple para cerrar sesión. Después reinicia y puede solicitar red para activar la Mac. **EACS conserva el macOS instalado; no es una reinstalación completa ni retira por sí mismo ADE.** En Monterey 12, la opción está en el menú de Preferencias del Sistema y solo existe en modelos compatibles; esa versión no es una instrucción de instalación para una M4. [Apple: EACS y requisitos](https://support.apple.com/102664).
 
 ### Paso 3 — Recovery y reinstalación, si hacen falta
 
-Si EACS no está disponible o se necesita reinstalar, seguir [la guía de Apple para chip Apple](https://support.apple.com/es-lamr/102506), con los requisitos anteriores resueltos:
+Para el recorrido de borrado y reinstalación desde cero, seguir [la guía de Apple para chip Apple](https://support.apple.com/es-lamr/102506), con los requisitos anteriores resueltos:
 
 1. Apagar, mantener presionado el encendido hasta las opciones de arranque y elegir **Options → Continue**. Seleccionar usuario y contraseña si se solicitan.
 2. Abrir **Utilidad de Discos → Continuar**. Identificar la instalación interna afectada. La guía de Apple selecciona **Macintosh HD**, no el contenedor APFS completo ni el dispositivo físico.
@@ -116,11 +133,38 @@ Se retiró la instrucción de mantener el equipo offline y conectar solo para de
 
 ### Paso 4 — Completar la configuración y comprobar
 
-Configurar la cuenta local mediante el asistente normal. Si aparece **Administración remota (Remote Management)** para la empresa anterior, registrar el mensaje: la baja administrativa sigue sin resolverse; no usar el bypass como paso automático de reparación.
+Completá el asistente normal y creá tu cuenta local. Cuando ofrezca transferir información desde otra Mac o Time Machine, elegí continuar sin transferirla; la etiqueta exacta depende de la versión. Reinstalá tus aplicaciones desde sus fuentes oficiales y copiá únicamente los documentos personales que quieras conservar. No restaures íntegramente el respaldo corporativo como parte de esta limpieza: Asistente de Migración puede transferir apps, cuentas y ajustes. [Apple: alcance de la migración](https://support.apple.com/102613).
 
-Después del inicio, consultar `profiles status -type enrollment` y revisar perfiles, agentes, login, FileVault y archivos. Que MDM diga `No` no acredita liberación de Apple Business. Si vuelve gestión, revisar con la organización la asignación efectiva. [Apple: inscripción automatizada](https://support.apple.com/en-by/guide/deployment/dep73069dd57/web).
+Si aparece **Administración remota (Remote Management)** para la empresa anterior, registrar el mensaje: la baja administrativa sigue sin resolverse; no usar el bypass como paso automático de reparación.
+
+Después del inicio, sin aplicar bloqueos de red ni scripts de bypass, registrá estas consultas de lectura:
+
+```bash
+profiles status -type enrollment
+sudo profiles list
+systemextensionsctl list
+```
+
+Para considerar terminada la parte local, MDM debe informar que no hay inscripción y no deben aparecer perfiles corporativos. Revisá también **Configuración del Sistema → General → Administración de dispositivos (Device Management)** en Sequoia 15; si el panel falta, contrastá con la consulta en lugar de deducir el estado solo por la interfaz. [Apple: ubicación del panel en Sequoia](https://support.apple.com/en-gb/121011).
+
+Revisá aplicaciones, ítems de inicio/extensiones y VPN, filtros, proxy o DNS que pudieran haber vuelto mediante una transferencia o instalación posterior. Un listado de extensiones puede incluir componentes legítimos; identificá cada uno y leé su estado, sin borrar por parecido de nombre. Una búsqueda vacía por nombres conocidos no acredita por sí sola ausencia de todo control.
+
+Probá login, conexión fuera de redes corporativas, FileVault y recuperación. Reiniciá y volvé a comprobar la inscripción y los perfiles. Registrá ambas líneas DEP/MDM: `MDM: No` no prueba liberación del número de serie. Si DEP sigue indicando `Yes` o aparece Remote Management, la desvinculación queda pendiente aunque puedas usar el escritorio. [Apple: inscripción automatizada](https://support.apple.com/en-by/guide/deployment/dep73069dd57/web).
+
+### Cierre del objetivo
+
+- [ ] macOS reinstalado y configurado como nuevo, sin migrar el entorno corporativo.
+- [ ] Sin inscripción MDM ni perfiles corporativos, con consultas completadas sin errores.
+- [ ] Sin agentes, extensiones ni configuraciones corporativas identificadas en la instalación nueva.
+- [ ] Bloqueo de activación ajeno resuelto y recuperación propia conservada.
+- [ ] Liberación de Apple Business/ABM confirmada por serie.
+- [ ] Uso normal con Internet, sin depender de un bypass para evitar inscripción.
+
+Si falta una confirmación, anotá el punto exacto pendiente. **“Quité lo posible localmente” no se convierte en “Mac completamente desvinculada” mientras DEP o un control corporativo siga sin resolverse.**
 
 ## Método experimental incluido: qué se pudo verificar
+
+**Este apartado no define un resultado final aceptado como “sin control corporativo”.** Describe el código existente y sus límites.
 
 Se conserva [bypass-dep-recovery.sh](../scripts/bypass-dep-recovery.sh) como código existente del proyecto. **Se leyó, no se ejecutó ni se certificó para una M4 o una versión de macOS.** El origen atribuido en sus comentarios es [assafdori/bypass-mdm](https://github.com/assafdori/bypass-mdm); no se comprobó que esta copia coincida con una revisión concreta del original.
 
@@ -158,7 +202,7 @@ No se mantuvo una secuencia de “borrar y luego probar el bypass”: no hay evi
 
 ## Importante sobre la versión de macOS
 
-Se verificó documentación actual y ejemplos de Tahoe 26; eso no confirma qué versión tiene tu Mac. Para resolver una diferencia de pantalla se necesita la versión/build de `sw_vers`, el idioma, el tipo de cuenta y el texto exacto visible. Para una baja administrativa se necesita además confirmación de la organización por serie, no una captura sin opción de Buscar.
+Tu versión informada es Sequoia 15; las capturas oficiales de Tahoe 26 son solo ejemplos de otra versión. Para resolver una diferencia puntual de pantalla se necesita el número/build de `sw_vers`, el idioma y el texto exacto visible. No hay sesión de cuenta de Apple iniciada según tu respuesta. Para una baja administrativa se necesita además confirmación de la organización por serie, no una captura sin opción de Buscar.
 
 ## Si quedaste sin poder iniciar sesión
 
